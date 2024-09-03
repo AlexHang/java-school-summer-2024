@@ -1,0 +1,15 @@
+Unul dintre clientii nostrii ne-a cerut sa implementam o solutie custom de monitorizare a biletelor pentru o companie aeriana.
+Se cer urmatoarele functionalitati:
+
+1. orice client isi poate face un cont cu informatii de baza: user/email, parola, nume, varsta
+
+2. compania va salva in aplicatie toate rutele sale, cu urmatoarele informatii: plecare, sosire, durata zbor, model avion. Despre fiecare avion, stim autonomia (distanta maxima pe care o poate zbura, numarul maxim de pasageri, si cateva detalii: marca si model)
+
+3. orice client poate cauta o ruta, si sa cumpere bilet pe acea ruta pentru o anumita data (aplicatia va verifica daca avionul mai are locuri libere, in caz contrar va arunca o eroare). Acesta va primi un bilet cu un id unic, si care este nominal pentru un singur user si o singura ruta cu o anumita data.
+
+4. compania va putea vedea oricand toate biletele vandute. Deoarece angajatii nu pot sa dea refresh mereu la pagina, si trebuie sa vada in timp real cate bilete sunt vandute si spre ce rute, trebuie sa existe o solutie care sa poata sa returneze prin server sent events lista cu toate biletele vandute de companie
+
+Referinte: 
+
+- https://medium.com/codimis/what-is-server-sent-event-sse-and-how-to-use-it-in-java-spring-boot-7f4ffa828882
+- https://www.baeldung.com/spring-server-sent-events

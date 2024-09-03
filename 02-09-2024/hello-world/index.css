@@ -1,0 +1,29 @@
+.card {
+  background-color: beige;
+  border: 2px solid red;
+
+  p {
+    color: blue;
+  }
+
+  p:last-of-type{
+    background-color: cyan;
+  }
+
+  h1 {
+    color: red;
+  }
+
+  h1:hover {
+    color: rgb(242, 255, 0);
+  }
+
+  #name-container {
+    color: green;
+  }
+}
+
+#second-hello{
+    color: rgb(215, 76, 206);
+}
+

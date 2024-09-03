@@ -1,0 +1,41 @@
+Creati o aplicatie spring care sa mimeze o banca functionalitati:
+
+- un client se poate inregistra
+- un client isi poate deschide un cont
+- un client isi poate deschide 2 tipuri de carduri associate unui cont: debit si credit (credit card inseamna ca poate depasi valoarea contului cu o anumita suma)
+- un client poate vedea toate cardurile sale
+- un client poate sa retraga bani de pe un card sau poate alimenta un cont
+- un client poate inchide (sterge) un card
+
+Refinement:
+Database - H2:
+    - Tables: - client(not necessary with an account):
+                    - id: uuid 
+                    - name
+                    - password
+                    - social security number (CNP)
+              - account (OneToMany with customers):
+                    - id: uuid
+                    - balance
+                    - limit (standard at some value)
+                    - client id (foreign key)
+                    - tip (debit/credit)
+              - card (differentiated - debit or credit by a field):
+                    - id: uuid
+                    - expiry date
+                    - accout_id(foreign key for account)
+              - tranzactionHistory:
+                    - uuid
+                    - Type: ENUM - transaction_type(add/withdrawl)
+                    - amount
+                    - account_id(foreign key)
+
+Endpoints:
+            - Client registration (saveNewClient): POST: "/register": data from request body
+            - Account opnening for a client (Argument: client_id): POST: "/openaccount/{id}": path variable and type of account using request body
+            - Card opening for account(Argument account_id): POST: "/newcard/{id}": path variable
+            - Get all cards for a client: GET: "/getcards/{client_id}": path variable
+            - Transaction for a card PUT: "transaction/{card_id}": path variable request body: type(add/withdrawl) and sum 
+            - Card delete DELETE: "delete/{card_id}"
+
+

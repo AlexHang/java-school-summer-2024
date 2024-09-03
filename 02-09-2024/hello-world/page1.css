@@ -1,0 +1,26 @@
+.row{
+    display: flex;
+    justify-content: space-between;
+
+    .col{
+        background-color: rgba(255, 100, 100, 0.2);
+        padding: 12px;
+        border-left: 2px solid yellow;
+    }
+
+    .col:hover{
+        opacity: 0.5;
+    }
+}
+
+#washed-text{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.circle{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 100px;
+}
+
