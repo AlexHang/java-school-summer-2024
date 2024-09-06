@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><current-date></current-date></h1>
+    <span>abc</span>
+    <click-counter></click-counter>
+    <script>
+        class CurrentDate extends HTMLElement {
+            // The browser calls this method when the element is
+            // added to the DOM.
+            connectedCallback() {
+                // Create a Date object representing the current date.
+                const now = new Date();
+        
+                // Format the date to a human-friendly string, and set the
+                // formatted date as the text content of this element.
+                this.innerText = now.toLocaleDateString();
+                this.innerText += " is the date of today";
+            }
+        }
+        
+        // Register the CurrentDate component using the tag name <current-date>.
+        customElements.define('current-date', CurrentDate);
+
+
+        class ClickCounter extends HTMLElement {
+            #style = `
+                <style>
+                    span{
+                        color: blue;
+                    }
+                </style>
+            `
+            constructor() {
+              super();
+          
+              // Attach a shadow DOM to the element.
+              this.attachShadow({ mode: 'open' });
+          
+              // Initialize the count variable
+              this.count = 0;
+          
+
+              this.shadowRoot.innerHTML += this.#style;
+
+
+              // Create the button element
+              const button = document.createElement('button');
+              button.textContent = 'Click me';
+          
+              // Create the mySpan element
+              this.mySpan = document.createElement('span');
+              this.mySpan.style.marginLeft = '10px';
+              this.mySpan.textContent = `Clicked ${this.count} times`;
+          
+              // Append the button and mySpan to the shadow DOM
+              this.shadowRoot.append(button, this.mySpan);
+
+              // Add an event listener to the button
+              button.addEventListener('click', () => this.incrementCount());
+            }
+          
+
+            // se apeleaza cand intra fisierul in DOM
+            connectedCallback(){
+
+            }
+
+            disconnectedCallback(){
+                
+            }
+
+            // Method to increment the count and update the mySpan
+            incrementCount() {
+              this.count++;
+              this.mySpan.textContent = `Clicked ${this.count} times`;
+            }
+          }
+          
+          // Define the new element
+          customElements.define('click-counter', ClickCounter);
+    </script>
+</body>
+</html>
